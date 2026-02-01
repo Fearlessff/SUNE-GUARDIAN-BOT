@@ -6,8 +6,8 @@ export const config = {
     botToken: process.env.TELEGRAM_BOT_TOKEN,
   },
   supabase: {
-    url: process.env.SUPABASE_URL,
-    anonKey: process.env.SUPABASE_ANON_KEY,
+    url: process.env.VITE_SUPABASE_URL,
+    anonKey: process.env.VITE_SUPABASE_ANON_KEY,
   },
   sune: {
     contractAddress: process.env.SUNE_CONTRACT_ADDRESS,
@@ -15,8 +15,8 @@ export const config = {
     telegram: process.env.SUNE_TELEGRAM,
   },
   moderation: {
-    maxWarnings: 3,
-    spamThreshold: 5,
-    captchaTimeout: 300000,
+    maxWarnings: parseInt(process.env.MAX_WARNINGS) || 3,
+    spamThreshold: parseInt(process.env.SPAM_THRESHOLD) || 5,
+    captchaTimeout: parseInt(process.env.CAPTCHA_TIMEOUT) || 300000,
   },
 };
