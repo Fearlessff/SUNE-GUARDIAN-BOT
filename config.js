@@ -1,3 +1,6 @@
+...};
+
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -15,8 +18,8 @@ export const config = {
     telegram: process.env.SUNE_TELEGRAM,
   },
   moderation: {
-    maxWarnings: 3,
-    spamThreshold: 5,
-    captchaTimeout: 300000,
+    maxWarnings: parseInt(process.env.MAX_WARNINGS) || 3,
+    spamThreshold: parseInt(process.env.SPAM_THRESHOLD) || 5,
+    captchaTimeout: parseInt(process.env.CAPTCHA_TIMEOUT) || 300000,
   },
 };
