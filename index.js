@@ -6,6 +6,9 @@ import { setupCryptoCommands } from './crypto.js';
 import { setupModerationCommands, checkSpam, handleNewMember } from './moderation.js';
 import { setupCommunityCommands } from './community.js';
 
+// <-- NEW IMPORT -->
+import { setupAutoRaids } from './autoRaid.js';
+
 if (!config.telegram.botToken) {
   console.error('ERROR: TELEGRAM_BOT_TOKEN is not set in .env file');
   console.error('Please add your Telegram bot token to the .env file:');
@@ -122,10 +125,14 @@ Stay positive, stay shining! ☀️
   ctx.reply(message, { parse_mode: 'Markdown' });
 });
 
+// SETUP ALL COMMAND MODULES
 setupRaidCommands(bot);
 setupCryptoCommands(bot);
 setupModerationCommands(bot);
 setupCommunityCommands(bot);
+
+// <-- NEW AUTO-RAID INITIALIZATION -->
+setupAutoRaids(bot);
 
 bot.on('text', async (ctx, next) => {
   if (ctx.session?.awaitingProof) {
@@ -156,3 +163,4 @@ bot.launch().then(() => {
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
+
